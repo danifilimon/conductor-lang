@@ -1,0 +1,159 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Conductor Test Language",
+    "scopeName": "source.shell.tl",
+    "patterns": [
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#logical-expression"
+        },
+        {
+            "include": "#variable"
+        },
+        {
+            "include": "#field"
+        },
+        {
+            "include": "#instructions"
+        }
+    ],
+    "repository": {
+        "instructions": {
+            "name": "keyword.control",
+            "match": "print|receive|from|where|expecting|only|supported|run|call|send|fail|set"
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.shell.tl",
+                    "match": "\\b(if|while|for|return)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.shell.tl",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.shell.tl",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "comment": {
+            "begin": "(^\\s+)?(?<=^|\\W)(?<!-)(?=#)(?!#{)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.whitespace.comment.shell.tl"
+                }
+            },
+            "end": "(?!\\G)",
+            "patterns": [
+                {
+                    "begin": "#",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.shell.tl"
+                        }
+                    },
+                    "end": "$",
+                    "name": "comment.line.number-sign.shell.tl"
+                }
+            ]
+        },
+        "logical-expression": {
+            "patterns": [
+                {
+                    "match": "=|!=|<|>|and|or",
+                    "name": "keyword.operator.logical.shell.tl"
+                }
+            ]
+        },
+        "field": {
+            "patterns": [
+                {
+                    "match": "[A-Z]+[A-Za-z]*",
+                    "name": "support.constant.handlebars"
+                }
+            ]
+        },
+        "variable": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.variable.shell"
+                        }
+                    },
+                    "match": "(\\$)[a-zA-Z_][a-zA-Z0-9_]*",
+                    "name": "variable.other.normal.shell"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.variable.shell"
+                        }
+                    },
+                    "match": "(\\$)[-*@#?$!0_]",
+                    "name": "variable.other.special.shell"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.variable.shell"
+                        }
+                    },
+                    "match": "(\\$)[1-9]",
+                    "name": "variable.other.positional.shell"
+                },
+                {
+                    "begin": "\\${",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.variable.shell"
+                        }
+                    },
+                    "end": "}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.variable.shell"
+                        }
+                    },
+                    "name": "variable.other.bracket.shell",
+                    "patterns": [
+                        {
+                            "match": "!|:[-=?]?|\\*|@|#{1,2}|%{1,2}|/",
+                            "name": "keyword.operator.expansion.shell"
+                        },
+                        {
+                            "captures": {
+                                "1": {
+                                    "name": "punctuation.section.array.shell"
+                                },
+                                "3": {
+                                    "name": "punctuation.section.array.shell"
+                                }
+                            },
+                            "match": "(\\[)([^\\]]+)(\\])"
+                        },
+                        {
+                            "include": "#variable"
+                        },
+                        {
+                            "include": "#string"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

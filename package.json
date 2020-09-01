@@ -1,0 +1,35 @@
+{
+    "name": "conductor-lang",
+    "displayName": "conductor-lang",
+    "description": "Language support for Itiviti Conductor",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.8.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "tl",
+            "aliases": ["Conductor Test Language", "tl"],
+            "extensions": [".tl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "tl",
+            "scopeName": "source.shell.tl",
+            "path": "./syntaxes/tl.tmLanguage.json"
+        }]
+    },
+    "publisher": "dfilimon",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/danifilimon/conductor-lang.git"
+    },
+    "bugs": {
+        "url": "https://github.com/danifilimon/conductor-lang/issues"
+    },
+    "homepage": "https://github.com/danifilimon/conductor-lang/blob/master/README.md",
+    "icon": "images/conductor-logo.png"
+}
