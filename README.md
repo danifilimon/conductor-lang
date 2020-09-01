@@ -1,10 +1,8 @@
-# conductor-lang README
+# conductor-lang extension
 
-This extension offers syntax highlighting for Itiviti Conductor Test Case Language.
+This VS Code extension offers syntax highlighting for Itiviti Conductor Test Case Language.
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
 
 ### 0.0.1
 
